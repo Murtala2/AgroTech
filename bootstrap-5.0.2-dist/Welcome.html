@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroTech Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('3521128.jpg') no-repeat center center fixed;
+            background-size: cover;
+            animation: moveBackground 20s linear infinite alternate;
+            z-index: -1;
+        }
+        @keyframes moveBackground {
+            0% { background-position: center top; }
+            100% { background-position: center bottom; }
+        }
+        .card-custom {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+        .form-container {
+            transition: transform 0.5s ease;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-container"></div>
+    <div class="card card-custom">
+        <h3 class="text-center" id="formTitle">Welcome To AgroTech</h3>
+        <p class="text-center text-muted small" id="formSubtitle">Please enter your credentials to log in.</p>
+        <div id="loginForm" class="form-container">
+            
+
+            <form action="../login.php" method="POST">
+                <div class="mb-3">
+                    <label for="emailLogin" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="emailLogin" name="email" placeholder="example@gmail.com" required>
+                </div>
+                <div class="mb-3">
+                    <label for="passwordLogin" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="passwordLogin" name="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-dark w-100">Login</button>
+            </form>
+            
+            <p class="text-center mt-3">
+                <a href="#" class="text-muted small" onclick="toggleForms()">Don't have an account? Register</a>
+            </p>
+        </div>
+        <div id="registerForm" class="form-container hidden">
+            <form action="../register.php" method="POST">
+                <div class="mb-3">
+                    <label for="emailRegister" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="emailRegister" name="email" placeholder="example@gmail.com" required>
+                </div>
+                <div class="mb-3">
+                    <label for="passwordRegister" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="passwordRegister" name="password" placeholder="Password" required>
+                </div>
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPassword" name="confirm_password" placeholder="Confirm Password" required>
+                </div>
+                <button type="submit" class="btn btn-dark w-100">Register</button>
+            </form>
+            
+            <p class="text-center mt-3">
+                <a href="#" class="text-muted small" onclick="toggleForms()">Already have an account? Login</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function toggleForms() {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const formTitle = document.getElementById('formTitle');
+            const formSubtitle = document.getElementById('formSubtitle');
+
+            loginForm.classList.toggle('hidden');
+            registerForm.classList.toggle('hidden');
+
+            if (loginForm.classList.contains('hidden')) {
+                formTitle.textContent = 'Register to AgroTech';
+                formSubtitle.textContent = 'Create your account to get started.';
+            } else {
+                formTitle.textContent = 'Welcome To AgroTech';
+                formSubtitle.textContent = 'Please enter your credentials to log in.';
+            }
+        }
+    </script>
+</body>
+</html>
